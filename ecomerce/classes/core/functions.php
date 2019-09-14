@@ -2,7 +2,7 @@
 class myApp{
 	function conectarBD(){
 		$serverName = "Mauricio"; //serverName\instanceName
-		$serverName ="LAPTOP-O77FNC78\SQLEXPRESS";
+		//$serverName ="LAPTOP-O77FNC78\SQLEXPRESS";
 		$connectionInfo = array( "database"=>"ecomerce", "UID"=>"", "PWD"=>"", "CharacterSet" => "UTF-8");
 		$conn = sqlsrv_connect( $serverName, $connectionInfo);
 		return $conn;		
@@ -56,8 +56,8 @@ class myApp{
 	/*
 			Productos
 	*/
-	public function selectProductos($data){
-		return $this->execQuery3("SELECT * FROM productos");
+	public function selectProductos(){
+		return $this->execQuery3("SELECT TOP 8 p.idProd,p.nombre,p.descripcion, p.img, p.idProvedor, pp.nombre from productos p join proveedor pp on pp.idProvedor = p.idProvedor where p.paga = 1");
 	}
 	public function insertProducto($data){
 		$nombre = $this->cleanString($data['nombre']);
@@ -118,12 +118,12 @@ class myApp{
         $provincia =$this->cleanString($data['provincia']);
         $email = $data['email'];
         $telefono =$this->cleanString($data['telefono']);
-        $cp = $this->cleanString($data['cp']);
 		$pass = $this->enc($data['password']);
 		$sql = "";
-		if($data['query']=='insert') $sql = "INSERT INTO proveedor(rfc, nombre,direccion, provincia,email,telefono,cp,password) OUTPUT INSERTED.idProvedor values('$rfc','$nombre','$direccion','$provincia','$email','$telefono','$cp','$pass')";
-		if($data['query'] =='update') $sql = "UPDATE proveedor set rfc = '$rfc', nombre = '$nombre', direccion = '$direccion', $provincia = '$provincia', telefono = '$telefono', cp = '$cp', password = '$pass' OUTPUT inserted.rfc where idProvedor = '".$data['idProveedor']."'";
-		return $this->execQuery3($sql)[0];
+		if($data['query']=='insert') $sql = "INSERT INTO proveedor(rfc, nombre,direccion, provincia,email,telefono,password) OUTPUT INSERTED.idProvedor values('$rfc','$nombre','$direccion','$provincia','$email','$telefono','$pass')";
+		if($data['query'] =='update') $sql = "UPDATE proveedor set rfc = '$rfc', nombre = '$nombre', direccion = '$direccion', $provincia = '$provincia', telefono = '$telefono', password = '$pass' OUTPUT inserted.rfc where idProvedor = '".$data['idProveedor']."'";
+		$result = $this->execQuery3($sql);
+		return $result[0];
 	}
 	public function insertCliente($data){
 		$email = $this->cleanString($data['email']);

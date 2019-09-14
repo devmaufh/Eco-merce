@@ -6,6 +6,16 @@ class ProductoController
     public function __construct($app) {
         $this->app=$app;
     }
+    public function selectTop(){
+        $res = $this->app->selectProductos();
+        $response = array();
+        if($res != null || $res != false){
+            foreach ($res as $key => $value) {
+                $response['data'][$key] = $value;
+            }
+        }else $response['success'] = true; 
+        echo json_encode($response);
+    }
     public function insert(){
         $data = $_POST['data'];
         $data['query'] = 'insert';
@@ -57,12 +67,7 @@ class ProductoController
 }
 $app = new myApp();
 $e = new ProductoController($app);
-$_POST['action'] = 'solicitud';
-$_POST['data'] = array(
-        'idProducto' => 1,
-        'pregunta1' => 'asdewq',
-        'pregunta2' => 'asdcxz'
-);
+
 if(isset($_POST['action'])  && !empty($_POST['action'])) {
     $action=$_POST['action'];
     switch ($action) {
@@ -71,6 +76,7 @@ if(isset($_POST['action'])  && !empty($_POST['action'])) {
         case 'delete':$e->delete();break;
         case 'solicitud':$e->solicitud();break;
         case 'pedidos':$e->pedidos();break;
+        case 'selectTop':$e->selectTop();break;
     }
 }
 ?>

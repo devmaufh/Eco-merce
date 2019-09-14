@@ -57,7 +57,7 @@ class myApp{
 			Productos
 	*/
 	public function selectProductos(){
-		return $this->execQuery3("SELECT TOP 8 p.idProd,p.nombre,p.descripcion, p.img, p.idProvedor, pp.nombre from productos p join proveedor pp on pp.idProvedor = p.idProvedor where p.paga = 1");
+		return $this->execQuery3("SELECT TOP 8 p.idProd,p.nombre,p.precioMayoreo,p.precioMenudeo,p.descripcion, p.img, p.idProvedor, pp.nombre as 'provedor' from productos p join proveedor pp on pp.idProvedor = p.idProvedor where p.paga = 1");
 	}
 	public function insertProducto($data){
 		$nombre = $this->cleanString($data['nombre']);

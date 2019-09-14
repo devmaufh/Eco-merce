@@ -27,3 +27,8 @@ create table usuarios(
     password varchar(125),
     id_n number
 );
+
+
+/*
+cambio de mau
+*(

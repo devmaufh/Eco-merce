@@ -2,6 +2,7 @@
 class myApp{
 	function conectarBD(){
 		$serverName = "Mauricio"; //serverName\instanceName
+		$serverName ="LAPTOP-O77FNC78\SQLEXPRESS";
 		$connectionInfo = array( "database"=>"ecomerce", "UID"=>"", "PWD"=>"", "CharacterSet" => "UTF-8");
 		$conn = sqlsrv_connect( $serverName, $connectionInfo);
 		return $conn;		
@@ -59,7 +60,32 @@ class myApp{
         $pass = $this->enc($data['password']);
         $sql = "INSERT INTO proveedor(rfc, nombre,direccion, provincia,email,telefono,cp,password) OUTPUT INSERTED.idProvedor values('$rfc','$nombre','$direccion','$provincia','$email','$telefono','$cp','$pass')";
         return $this->execQuery3($sql)[0];
-    }
-    
+	}
+	public function insertCliente($data){
+		$email = $this->cleanString($data['email']);
+		$nom = $this->cleanString($data['nombre']);
+		$tel = $this->cleanString($data['tel']);
+		$dir = $this->cleanString($data['direccion']);
+		$rfc = $this->cleanString($data['rfc']);
+		$pass = $this->enc($data['password']);
+		$sql = "INSERT INTO cliente(email, nombre, tel, direccion, rfc, password) OUTPUT INSERTED.idCliente  VALUES ('$email', '$nom', '$tel', '$dir', '$rfc', '$pass')";
+		return $this->execQuery3($sql)[0];
+	}
+	public function updateCliente($data){
+		$idCliente = $this->cleanString($data['idCliente']);
+		$email = $this->cleanString($data['email']);
+		$nom = $this->cleanString($data['nombre']);
+		$tel = $this->cleanString($data['tel']);
+		$dir = $this->cleanString($data['direccion']);
+		$rfc = $this->cleanString($data['rfc']);
+		$pass = $this->enc($data['password']);
+		$sql = "UPDATE cliente SET email = '$email', nombre = '$nom', tel = '$tel', direccion = '$dir', rfc = '$rfc', password = '$pass' WHERE idCliente = '$idCliente'";
+		return $this->execQuery3($sql)[0];
+	}   
+	public function deleteCliente($data){
+		$idCliente = $data['idCliente'];
+		$sql = "DELETE FROM cliente WHERE idCliente = $idCliente";
+		return $this->execQuery3($sql)[0];
+	} 
 }
 ?>

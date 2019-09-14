@@ -1,6 +1,6 @@
 <?php
 include_once('../core/functions.php');
-class ProvedorController
+class ProductoController
 {
     private $app;
     public function __construct($app) {
@@ -9,26 +9,25 @@ class ProvedorController
     public function insert(){
         $data = $_POST['data'];
         $data['query'] = 'insert';
-        $res = $this->app->insertUpdateProvedores($data);
+        $res = $this->app->insertProducto($data);
         $response = array();
         if($res != false || $res != null){
             $response['success'] = true;
-            $response['idProvedor'] = $res['idProvedor'];
+            $response['idProducto'] = $res['idProducto'];
         }else $response['success'] =false;
         echo json_encode($response);
     }
     public function delete(){
         $response = array();
         $data = $_POST['data'];
-        $res = $this->deleteProvedor($data);
+        $res = $this->deleteProducto($data);
         if($res) $response['sucess'] = true;
         else $response['success'] = false;
         echo json_encode($response);
     }
     public function update(){
         $data = $_POST['data'];
-        $data['query'] = 'update';
-        $res = $this->app->insertUpdateProvedores($data);
+        $res = $this->app->updateProducto($data);
         $response =  array();
         if($response != false || $response!= null){
             $response['success'] = true;
@@ -38,11 +37,7 @@ class ProvedorController
     }
 }
 $app = new myApp();
-$e = new ProvedorController($app);
-$_POST['action'] = 'insert';
-$_POST['data'] = array(
-    'tipo' => 'insertado desde codigo',
-);
+$e = new ProductoController($app);
 if(isset($_POST['action'])  && !empty($_POST['action'])) {
     $action=$_POST['action'];
     switch ($action) {

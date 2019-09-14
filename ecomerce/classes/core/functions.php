@@ -23,7 +23,6 @@ class myApp{
 			return true;
 		}
     }
-    //Additional functions
 	function cleanString($string) {
 		return preg_replace('/[^A-Za-z0-9\. -]/', '', $string); // Removes special chars.
      }
@@ -41,13 +40,61 @@ class myApp{
     }
     public function checkHash($var,$hash){
 		return password_verify($var,$hash);
-    }
-
+	}
+	/*
+			USUARIOS
+	*/
+	public function insertUser($data){
+		$idTipo = $data['idTipo'];
+		$user = $this->cleanString($data['user']);
+		$password = $this->enc($data['password']);
+		$sql = "insert into usuarios(idTipo, usuario, password) OUTPUT inserted.idUser values($idTipo,'$user','$password')";
+		return $this->execQuery3($sql)[0];
+	}
+	//Login pendiente
+	/*
+			Productos
+	*/
+	public function selectProductos($data){
+		return $this->execQuery3("SELECT * FROM productos");
+	}
+	public function insertProducto($data){
+		$nombre = $this->cleanString($data['nombre']);
+		$descripcion = $this->cleanString($data['descripcion']);
+		$precioMay = $this->cleanString($data['precionMay']);
+		$precioMen = $this->cleanString($data['precionMen']);
+		$cantidad = $this->execQuery3($data['cantidad']);
+		$idProvedor = $this->execQuery3($data['idProvedor']);
+		$sql = "insert into productos(nombre,descripcion,precioMayoreo,precioMenudeo,cantidad,idProvedor) OUTPUT INSERTED.idProd values('$nombre','$descripcion',$precioMay,$precioMen,$cantidad,$idProvedor)";
+		return $this->execQuery3($sql);
+	}
+	public function updateProducto($data){
+		$idProducto = $this->cleanString($data['idProducto']);
+		$nombre = $this->cleanString($data['nombre']);
+		$descripcion = $this->cleanString($data['descripcion']);
+		$precioMay = $this->cleanString($data['precionMay']);
+		$precioMen = $this->cleanString($data['precionMen']);
+		$cantidad = $this->execQuery3($data['cantidad']);
+		$idProvedor = $this->execQuery3($data['idProvedor']);
+		$sql = "update productos set nombre = '$nombre', descripcion = '$descripcion', precioMayoreo = $precioMay, precioMenudeo = $precioMen, cantidad = $cantidad where idProd =$idProducto";
+		return $this->execQuery3($sql);
+	}
+	public function deleteProducto($data){
+		$idProducto = $data['idProducto'];
+		return $this->execQuery3("DELETE FROM productos where idProducto = $idProducto");
+	}
     public function insertTipoUsuario($data){
         $tipo = $this->cleanString($data['tipo']);
         return $this->execQuery3("INSERT INTO tipoUsuario(tipo) OUTPUT inserted.idTipo values('$tipo')")[0];
-    }
-    public function insertProvedor($data){
+	}
+	public function selectProvedor(){
+		return $this->execQuery3("SELECT * from proveedor");
+	}
+	public function deleteProvedor($data){
+		$idProvedor = $data['idProvedor'];
+		return $this->execQuery3("DELETE FROM proveedor where idProvedor = $idProvedor");
+	}
+    public function insertUpdateProvedores($data){
         //rfc, nombre,direccion,provincia,email,telefono,cp,password
         $rfc = $this->cleanString($data['rfc']);
         $nombre = $this->cleanString($data['nombre']);
@@ -56,9 +103,11 @@ class myApp{
         $email = $data['email'];
         $telefono =$this->cleanString($data['telefono']);
         $cp = $this->cleanString($data['cp']);
-        $pass = $this->enc($data['password']);
-        $sql = "INSERT INTO proveedor(rfc, nombre,direccion, provincia,email,telefono,cp,password) OUTPUT INSERTED.idProvedor values('$rfc','$nombre','$direccion','$provincia','$email','$telefono','$cp','$pass')";
-        return $this->execQuery3($sql)[0];
+		$pass = $this->enc($data['password']);
+		$sql = "";
+		if($data['query']=='insert') $sql = "INSERT INTO proveedor(rfc, nombre,direccion, provincia,email,telefono,cp,password) OUTPUT INSERTED.idProvedor values('$rfc','$nombre','$direccion','$provincia','$email','$telefono','$cp','$pass')";
+		if($data['query'] =='update') $sql = "UPDATE proveedor set rfc = '$rfc', nombre = '$nombre', direccion = '$direccion', $provincia = '$provincia', telefono = '$telefono', cp = '$cp', password = '$pass' OUTPUT inserted.rfc where idProvedor = '".$data['idProveedor']."'";
+		return $this->execQuery3($sql)[0];
     }
     
 }

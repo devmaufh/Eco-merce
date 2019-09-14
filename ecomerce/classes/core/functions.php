@@ -89,7 +89,7 @@ class myApp{
 		$preg1 = $this->cleanString($data['pregunta1']);
 		$preg2 = $this->cleanString($data['pregunta2']);
 		$sql = "insert into solicitud(idProducto,pregunta1,pregunta2) OUTPUT inserted.idProducto values($idProducto,'$preg1','$preg2')";
-		return execQuery3($sql)[0];
+		return $this -> execQuery3($sql)[0];
 	}
 	public function pedidos($data){
 		$idProducto = $data['idProducto'];

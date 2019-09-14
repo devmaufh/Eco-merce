@@ -45,11 +45,24 @@ class ProductoController
         }else $response['status'] = false;
     }
     public function solicitud(){
-        
+        $data = $_POST['data'];
+        $res = $this->app->solicitud($data);
+        $response =  array();
+        if($response != false || $response!= null){
+            $response['success'] = true;
+            $response['data'] = $res;
+        }else $response['success'] = false;
+        echo json_encode($response);   
     }
 }
 $app = new myApp();
 $e = new ProductoController($app);
+$_POST['action'] = 'solicitud';
+$_POST['data'] = array(
+        'idProducto' => 1,
+        'pregunta1' => 'asdewq',
+        'pregunta2' => 'asdcxz'
+);
 if(isset($_POST['action'])  && !empty($_POST['action'])) {
     $action=$_POST['action'];
     switch ($action) {

@@ -35,6 +35,15 @@ class ProductoController
         }else $response['success'] = false;
         echo json_encode($response);
     }
+    public function pedidos(){
+        $response = array();
+        $data = $_POST['data'];
+        $res = $this->app->pedidos($data);
+        if($res != null || $res != false){
+            $response['status'] = true;
+            $response['data'] = $res;
+        }else $response['status'] = false;
+    }
     public function solicitud(){
         
     }
@@ -48,6 +57,7 @@ if(isset($_POST['action'])  && !empty($_POST['action'])) {
         case 'update':$e->update();break;
         case 'delete':$e->delete();break;
         case 'solicitud':$e->solicitud();break;
+        case 'pedidos':$e->pedidos();break;
     }
 }
 ?>

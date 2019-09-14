@@ -91,6 +91,14 @@ class myApp{
 		$sql = "insert into solicitud(idProducto,pregunta1,pregunta2) OUTPUT inserted.idProducto values($idProducto,'$preg1','$preg2')";
 		return execQuery3($sql)[0];
 	}
+	public function pedidos($data){
+		$idProducto = $data['idProducto'];
+		$idCliente = $data['idCliente'];
+		$cantidad = $data['cantidad'];
+		$fecha = $data['fecha'];
+		$sql = "insert into pedidos(idProducto,idCliente,cantidad,fecha,status) OUTPUT inserted.idProducto values($idProducto,$idCliente,$cantidad,$fecha,0)";
+		return execQuery3($sql)[0];
+	}
     public function insertTipoUsuario($data){
         $tipo = $this->cleanString($data['tipo']);
         return $this->execQuery3("INSERT INTO tipoUsuario(tipo) OUTPUT inserted.idTipo values('$tipo')")[0];

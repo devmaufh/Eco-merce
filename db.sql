@@ -32,3 +32,13 @@ create table usuarios(
 /*
 cambio de mau
 *(
+
+asd
+as
+d
+asd
++as
+d+as
++dsa
++d
++a

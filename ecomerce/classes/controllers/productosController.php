@@ -35,6 +35,9 @@ class ProductoController
         }else $response['success'] = false;
         echo json_encode($response);
     }
+    public function solicitud(){
+        
+    }
 }
 $app = new myApp();
 $e = new ProductoController($app);
@@ -44,6 +47,7 @@ if(isset($_POST['action'])  && !empty($_POST['action'])) {
         case 'insert':$e->insert();break;
         case 'update':$e->update();break;
         case 'delete':$e->delete();break;
+        case 'solicitud':$e->solicitud();break;
     }
 }
 ?>

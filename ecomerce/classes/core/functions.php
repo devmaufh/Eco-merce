@@ -83,6 +83,13 @@ class myApp{
 		$idProducto = $data['idProducto'];
 		return $this->execQuery3("DELETE FROM productos where idProducto = $idProducto");
 	}
+	public function solicitud($data){
+		$idProducto = $data['idProducto'];
+		$preg1 = $this->cleanString($data['pregunta1']);
+		$preg2 = $this->cleanString($data['pregunta2']);
+		$sql = "insert into solicitud(idProducto,pregunta1,pregunta2) OUTPUT inserted.idProducto values($idProducto,'$preg1','$preg2')";
+		return execQuery3($sql)[0];
+	}
     public function insertTipoUsuario($data){
         $tipo = $this->cleanString($data['tipo']);
         return $this->execQuery3("INSERT INTO tipoUsuario(tipo) OUTPUT inserted.idTipo values('$tipo')")[0];

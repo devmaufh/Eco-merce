@@ -1,6 +1,7 @@
-create table tipoUsuario(idTipo serial primary key, tipo varchar(25));
+
+create table tipoUsuario(idTipo int identity primary key, tipo varchar(25));
 create table proveedor(
-    idProvedor serial primary key,
+    idProvedor int identity primary key,
     rfc char(13),
     nombre varchar(50),
     direccion varchar(100),
@@ -12,7 +13,7 @@ create table proveedor(
 );
 
 create table productos(
-    idProd serial primary key,
+    idProd int identity primary key,
     nombre varchar(100),
     descripcion varchar(500),
     precioMayoreo numeric,
@@ -22,13 +23,13 @@ create table productos(
     foreign key(idProvedor) references proveedor(idProvedor)
 );
 create table usuarios(
-    idUser serial primary key,
+    idUser int  identity primary key,
     idTipo integer,
     usuario varchar(125),
     password varchar(125)
 );
 create table cliente(
-    idCliente serial primary key,
+    idCliente int identity primary key,
     email varchar(100),
     nombre varchar(100),
     tel char(10),
@@ -38,7 +39,7 @@ create table cliente(
 );
 
 create table pedidos(
-    idPedido serial primary key,
+    idPedido int identity primary key,
     idProducto integer,
     idCliente integer,
     cantidad numeric,
@@ -49,7 +50,7 @@ create table pedidos(
 );
 
 create table solicitud(
-    idSolicitud serial primary key,
+    idSolicitud int identity primary key,
     idProducto integer,
     pregunta1 text,
     pregunta2 text

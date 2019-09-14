@@ -1,6 +1,6 @@
 <?php
 include_once('../core/functions.php');
-class UserTypeController
+class ProvedorController
 {
     private $app;
     public function __construct($app) {
@@ -12,16 +12,13 @@ class UserTypeController
         $response = array();
         if($res != false || $res != null){
             $response['success'] = true;
-            $response['idTipo'] = $res['idTipo'];
+            $response['idProvedor'] = $res['idProvedor'];
         }else $response['success'] =false;
         echo json_encode($response);
     }
-    public function update(){
-        
-    }
 }
 $app = new myApp();
-$e = new UserTypeController($app);
+$e = new ProvedorController($app);
 $_POST['action'] = 'insert';
 $_POST['data'] = array(
     'tipo' => 'insertado desde codigo',
@@ -30,7 +27,6 @@ if(isset($_POST['action'])  && !empty($_POST['action'])) {
     $action=$_POST['action'];
     switch ($action) {
         case 'insert':$e->insert();break;
-        case 'update': $e->update();break;
     }
 }
 ?>

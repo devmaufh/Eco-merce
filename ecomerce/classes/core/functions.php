@@ -52,7 +52,31 @@ class myApp{
 		$sql = "insert into usuarios(idTipo, usuario, password) OUTPUT inserted.idUser values($idTipo,'$user','$password')";
 		return $this->execQuery3($sql)[0];
 	}
-	//Login pendiente
+	//Login pendiente --> ya no :'v
+	public function login($data){
+		$result = array();
+		$email = $data['username'];
+		$password = $data['password'];
+		$hash = $this->execQuery3("exec checkHashUser '$email'")[0];
+		if($hash['status'] == 1 ){
+			if($this->checkHash($password,$hash['password'])){ //Login si
+				$sql = "SELECT 0 as 'result'";
+				$result['log_stat'] = true;
+				if($hash['tipo'] == 1){ //Provedor
+					$sql = "select idProvedor,rfc,nombre from proveedor where email = '$email'";
+				}else{ //Cliente
+					$sql = "select idCliente,email,nombre from cliente where email = '$sql'";
+				}
+				$data = $this->execQuery3($sql)[0];
+				$result['data'] = $data;
+			}else{
+				$result['log_stat'] = false;
+			}
+		}else{
+			$result['log_stat'] = false;			
+		}
+		return $result;
+	}
 	/*
 			Productos
 	*/

@@ -55,3 +55,25 @@ create table solicitud(
     pregunta1 text,
     pregunta2 text
 );
+
+
+alter proc checkHashUser
+@email varchar(250)
+as
+BEGIN
+	if EXISTS (SELECT * from proveedor where email = @email)
+	BEGIN
+		Select 1 as 'status',1 as 'tipo',password from proveedor where email=@email
+	END
+	else
+	BEGIN
+		IF EXISTS (SELECT * from cliente where email =@email)
+		BEGIN 
+			select 1 as 'status',0 as 'tipo', password from cliente where email = @email
+		END
+		ELSE
+		BEGIN
+			SELECT 0 as 'status';
+		END
+	END
+END

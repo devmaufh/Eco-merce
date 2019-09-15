@@ -1,4 +1,5 @@
 <?php
+include_once('../core/functions.php');
 class ProvedorController
 {
     private $app;

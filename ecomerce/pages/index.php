@@ -6,8 +6,8 @@ include_once('../components/header.php');
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <h1 class="title">Un lema chido</h1>
-                <h4>Descripcion chida</h4>
+                <h1 class="title">Sé eco-friendly, sé eco-merce.</h1>
+                <h4>Conectamos, educamos, certificamos y ayudamos.</h4>
                 <br>
                 <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"
                     class="btn btn-danger btn-raised btn-lg">
@@ -36,19 +36,17 @@ include_once('../components/header.php');
                             <div class="icon icon-info">
                                 <i class="material-icons">verified_user</i>
                             </div>
-                            <h4 class="info-title">ventaja 0</h4>
-                            <p>Divide details about your product or agency work into parts. Write a few lines about each
-                                one. A paragraph describing a feature will be enough.</p>
+                            <h4 class="info-title">Certificación</h4>
+                            <p></p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="info">
                             <div class="icon icon-success">
-                                <i class="material-icons">verified_user</i>
+                                <i class="material-icons">school</i>
                             </div>
-                            <h4 class="info-title">ventaja 1</h4>
-                            <p>Divide details about your product or agency work into parts. Write a few lines about each
-                                one. A paragraph describing a feature will be enough.</p>
+                            <h4 class="info-title">Ofrece educación ambiental</h4>
+                            <p></p>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -56,9 +54,8 @@ include_once('../components/header.php');
                             <div class="icon icon-danger">
                                 <i class="material-icons">fingerprint</i>
                             </div>
-                            <h4 class="info-title">ventaja 1</h4>
-                            <p>Divide details about your product or agency work into parts. Write a few lines about each
-                                one. A paragraph describing a feature will be enough.</p>
+                            <h4 class="info-title">Disminuye tu huella ecológica</h4>
+                            <p></p>
                         </div>
                     </div>
 

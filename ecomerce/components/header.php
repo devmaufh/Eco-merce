@@ -36,16 +36,27 @@
         <ul class="navbar-nav ml-auto">
          
           <li class="nav-item">
-            <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="login.php" target="_blank" data-original-title="Inciar sesión">
+            <a class="nav-link" rel="tooltip" title=""  data-toggle="modal" data-target="#loginModal"  href="#" >
             Iniciar sesión
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="registro.php" target="_blank" data-original-title="Registrate">
-            Registrate
+          <li class="dropdown nav-item">
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+               Registrarme
             </a>
+            <div class="dropdown-menu">
+              <a href="#" class="dropdown-item">
+                 Proveedor
+              </a>
+              <a href="#" class="dropdown-item">
+                 Cliente
+              </a>
+            </div>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+
+
+  

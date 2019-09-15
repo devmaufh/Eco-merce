@@ -1,15 +1,14 @@
 <?php
 include_once('../components/header.php');
 ?>
-
 <div class="page-header header-filter"
-    style="background-image: url('https://cdn.pixabay.com/photo/2019/07/21/08/28/sunflowers-4352167_960_720.jpg'); background-size: cover; background-position: top center;">
+    style="background-image: url('https://cdn.pixabay.com/photo/2016/07/05/16/53/leaf-1498985_960_720.jpg'); background-size: cover; background-position: top center;">
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md- ml-auto     mr-auto">
                 <div class="card card-login">
                     <form class="form" method="" action="">
-                        <div class="card-header card-header-warning text-center">
+                        <div class="card-header card-header-success text-center">
                             <h4 class="card-title">Iniciar sesión</h4>
                             <div class="social-line">
                                 <a href="#pablo" class="btn btn-just-icon btn-link">
@@ -44,15 +43,15 @@ include_once('../components/header.php');
                             </div>
                         </div>
                         <div class="footer text-center">
-                            <a id="btnLogin" href="#pablo" class="btn btn-primary btn-link btn-wd btn-lg">Iniciar sesión</a>
+                            <a id="btnLogin" href="#pablo" class="btn btn-success btn-link btn-wd btn-lg">Iniciar sesión</a>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    
 </div>
-
-
 <?php include_once('../components/footer.php');?>
+
+
+<script src="../js/login.js"></script>

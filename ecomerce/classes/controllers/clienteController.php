@@ -30,6 +30,7 @@ class ClienteController
         $response['mensaje']='Se elimino un campo de la tabla';
         echo json_encode($response);
     }
+    
 }
 $app = new myApp();
 $e = new ClienteController($app);

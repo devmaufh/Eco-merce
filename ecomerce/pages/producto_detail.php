@@ -41,10 +41,13 @@ include_once('../components/header.php');
                 <br>
                 <h2 class="text-white" id="d2p"><b>$5000</b></h2>
                 <h3 class="text-white" id="d3p" hidden><b>$5000</b></h3>
-
-                <a href="" target="_blank"
+                <a data-toggle="modal" data-target="#signupModal"
                     class="btn btn-success btn-raised btn-lg">
-                    <i class="fa fa-plus"></i> Comprar  
+                    <i class="fa fa-plus"></i> Comprar por mayoreo
+                </a>
+                <a href="" target="_blank"
+                    class="btn btn-warning btn-raised btn-lg">
+                    <i class="fa fa-plus"></i> Comprar por menudeo
                 </a>
             </div>
         </div>
@@ -68,6 +71,67 @@ include_once('../components/header.php');
         </div>
     </div>
 </div>
+
+
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-signup" role="document">
+    <div class="modal-content">
+      <div class="card card-signup card-plain">
+        <div class="modal-header">
+          <h5 class="modal-title card-title">Comprar por mayoreo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <i class="material-icons">clear</i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col mr-auto">
+              
+
+              <form class="form" method="" action="">
+                <div class="card-body">
+                <h6>Para que el precio por mayoreo aplique, el proveedor indicó que debes realizar una compra mínima de <b class="text-warning" >500</b> piezas</h6>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text"></div>
+                      </div>
+                        <input type="number" class="form-control" placeholder="Cantidad de piezas">
+                    </div>
+                  </div>
+
+                <div hidden class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"></div>
+                    </div>
+                      <input type="password" placeholder="Password..." class="form-control" />
+                  </div>
+                </div>
+
+                <div hidden class="form-check">
+                  <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" value="" checked>
+                      <span class="form-check-sign">
+                          <span class="check"></span>
+                      </span>
+                      I agree to the <a href="#something">terms and conditions</a>.
+                  </label>
+                </div>
+                </div>
+              <div class="modal-footer justify-content-center">
+              <a href="#pablo" class="btn btn-success btn-round">Realizar pedido</a>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <?php
 include_once('../components/footer.php');
 ?>

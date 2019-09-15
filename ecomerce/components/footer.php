@@ -79,7 +79,7 @@
             </a>
           </li>
           <li>
-            <a href="https://www.creative-tim.com/license">
+            <a href="http://localhost/Eco-merce/ecomerce/pages/terminos_condiciones.php">
               Términos y condiciones
             </a>
           </li>

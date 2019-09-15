@@ -2,7 +2,7 @@
 class myApp{
 	function conectarBD(){
 		$serverName = "Mauricio"; //serverName\instanceName
-		//$serverName ="LAPTOP-O77FNC78\SQLEXPRESS";
+		$serverName ="LAPTOP-O77FNC78\SQLEXPRESS";
 		$connectionInfo = array( "database"=>"ecomerce", "UID"=>"", "PWD"=>"", "CharacterSet" => "UTF-8");
 		$conn = sqlsrv_connect( $serverName, $connectionInfo);
 		return $conn;		

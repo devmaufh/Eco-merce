@@ -83,6 +83,10 @@ class myApp{
 	public function selectProductos(){
 		return $this->execQuery3("SELECT TOP 8 p.idProd,p.nombre,p.precioMayoreo,p.precioMenudeo,p.descripcion, p.img, p.idProvedor, pp.nombre as 'provedor' from productos p join proveedor pp on pp.idProvedor = p.idProvedor where p.paga = 1");
 	}
+	public function selectByProvedor($id){
+		return $this->execQuery3("SELECT TOP 10 p.idProd,p.nombre,p.precioMayoreo,p.precioMenudeo,p.descripcion, p.img, p.idProvedor, pp.nombre as 'provedor' from productos p join proveedor pp on pp.idProvedor = p.idProvedor where p.idProvedor = $id");
+		return execQuery3($sql);
+	}
 	public function insertProducto($data){
 		$nombre = $this->cleanString($data['nombre']);
 		$descripcion = $this->cleanString($data['descripcion']);
@@ -92,6 +96,11 @@ class myApp{
 		$idProvedor = $this->execQuery3($data['idProvedor']);
 		$sql = "insert into productos(nombre,descripcion,precioMayoreo,precioMenudeo,cantidad,idProvedor) OUTPUT INSERTED.idProd values('$nombre','$descripcion',$precioMay,$precioMen,$cantidad,$idProvedor)";
 		return $this->execQuery3($sql);
+	}
+	public function selectProductoId($id){
+		$sql = "SELECT idProd, nombre, descripcion, precioMayoreo, precioMenudeo,img,idProvedor from productos where idProd = $id";
+		return $this->execQuery3($sql)[0];
+
 	}
 	public function updateProducto($data){
 		$idProducto = $this->cleanString($data['idProducto']);

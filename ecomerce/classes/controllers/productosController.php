@@ -16,6 +16,17 @@ class ProductoController
         }else $response['success'] = true; 
         echo json_encode($response);
     }
+    public function selectProvedor(){
+        $res = $this->app->selectByProvedor($_POST
+    ['idP']);
+        $response = array();
+        if($res != null || $res != false){
+            foreach ($res as $key => $value) {
+                $response['data'][$key] = $value;
+            }
+        }else $response['success'] = true; 
+        echo json_encode($response);
+    }
     public function insert(){
         $data = $_POST['data'];
         $data['query'] = 'insert';
@@ -64,6 +75,15 @@ class ProductoController
         }else $response['success'] = false;
         echo json_encode($response);   
     }
+    public function selectById(){
+        $res = $this->app->selectProductoId($_POST['idp']);
+        $response = array();
+        if($res!= null || $res!=false){
+            $response['data'] = $res;
+            $response['status'] = true;
+        }else $response['status'] = false;
+        echo json_encode($response);
+    }
 }
 $app = new myApp();
 $e = new ProductoController($app);
@@ -77,6 +97,8 @@ if(isset($_POST['action'])  && !empty($_POST['action'])) {
         case 'solicitud':$e->solicitud();break;
         case 'pedidos':$e->pedidos();break;
         case 'selectTop':$e->selectTop();break;
+        case 'query_one':$e->selectById();break;
+        case 'selectProvedor':$e->selectProvedor();break;
     }
 }
 ?>

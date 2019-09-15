@@ -17,6 +17,16 @@
   <link href="../assets/css/material-kit.css?v=2.0.6" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
+  <style>
+
+.foto-p {
+            width: 100%;
+            object-fit: cover;
+            height: 400px;
+            /* only if you want fixed height */
+        
+  
+  </style>
 </head>
 
 <body class="landing-page sidebar-collapse">
